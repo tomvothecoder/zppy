@@ -49,8 +49,10 @@ def e3sm_diags_vs_model(config, scriptDir):
             with open(scriptFile, 'w') as f:
                 f.write(template.render( **c ))
 
-            # List of dependencies
-            dependencies = [ os.path.join(scriptDir, 'climo_%s_%04d-%04d.status' % (c['grid'],c['year1'],c['year2'])), ]
+
+            # List of depensencies
+            dependencies = [ os.path.join(scriptDir, 'climo_%s_%04d-%04d.status' % (sub,c['year1'],c['year2'])), ]
+
 
             # Submit job
             jobid = submitScript(scriptFile, dependFiles=dependencies, export='NONE')
